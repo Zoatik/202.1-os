@@ -1,5 +1,5 @@
 .data
-  // A-4 bytes buffer.
+  // A 4-bytes buffer.
   buffer:
     .word 0
 
