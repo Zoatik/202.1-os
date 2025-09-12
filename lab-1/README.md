@@ -13,14 +13,6 @@ fontsize: 10pt
 caption-justification: centering
 ---
 
-<!--
-Some comments for you that read this document:
-    - The header defines the generic content of the document
-    - You can include either SVG, PNG, PDF images... as you wish
-    - Code can be included using gfm syntax (in the example here, using Scala). Other languages can be added if required, do not hesitate to contact me.
-    - LaTex can be included directly in the markdown if required (see example below)
--->
-
 <style>
 r { color: Red }
 y { color: Yellow }
@@ -37,7 +29,7 @@ Specifically, we'll learn how to:
 - perform system calls.
 
 The estimated duration of this lab is **4 periods**.
-The result of Task 5 must be submitted on [isc.hevs.ch/learn](https://isc.hevs.ch/learn) no later than TDB.
+The result of Task 5 must be submitted on [isc.hevs.ch/learn](https://isc.hevs.ch/learn) no later than Sunday 28th September at 23:59 (CEST).
 
 # Part 1 -- Setup
 
@@ -49,8 +41,8 @@ Fortunately, we can use containers to emulate such an architecture on top of mos
 
 1. Install [Docker Desktop](https://www.docker.com/) and [Visual Studio Code (VS Code)](https://code.visualstudio.com) on your machine.
 2. In VS Code, install the [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension.
-3. Download (or clone using git) the following repository: TBD
-4. Open the repository with VS Code and click on "Reopen in Container" in the bottom-right dialogue. If the dialog does not show, you can press `Ctrl+Shift+P` to open the command palette and type "Reopen in Container".
+3. Download (or clone using git) the following repository: [https://github.com/ISC-HEI/202.1-os](https://github.com/ISC-HEI/202.1-os).
+4. Open the `lab-1` folder of this repository with VS Code and click on "Reopen in Container" in the bottom-right dialogue. If the dialog does not show, you can press `Ctrl+Shift+P` to open the command palette and type "Reopen in Container".
 
 VS Code will reopen and start a Docker container configured to run Linux on a 64-bit ARM architecture (emulated if necessary).
 Once the container is ready, open a terminal in VS Code and run the following command to confirm that your system is up and running:
