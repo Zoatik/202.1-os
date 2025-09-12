@@ -52,7 +52,7 @@ _print_nat_0:
 _print_nat_n:
   // Print the contents of the buffer referred to by `x3` starting from `w2`.
   add   x4, x3, x1
-  mov    w3, #4
+  mov   w3, #4
   sub   w2, w3, w1
   mov   x1, x4
   mov   x0, #1
