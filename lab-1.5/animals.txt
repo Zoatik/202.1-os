@@ -1,0 +1,7 @@
+bird koala dog
+ferret fish bergil
+hamster lizard mouse
+rabbit rat snake
+turtle cow chicken
+goat donkey horse
+sheep pig cat
