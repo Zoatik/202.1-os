@@ -168,7 +168,7 @@ Written imperatively, the above sequence is equivalent to the following block:
 
 ```scala
 var accumulator = 0
-for x <- ArraySeq(1, 2, 3) do
+for x <- ArraySeq(1, 2, 3).reverse do
   accumulator += x
 accumulator
 ```
@@ -210,6 +210,8 @@ A usage example is shown below.
 ./compile.sh fold.s
 ./fold sort 1 5 3 7 2
 ```
+
+## Submission
 
 Once you're done, submit your while program, which should the implementations of `_foldright` and `_tree_insert`, on [isc.hevs.ch/learn](https://isc.hevs.ch/learn).
 Your lab will be graded on the basis of the correctness and clarity of your implementation.
