@@ -197,18 +197,18 @@ Its fifth parameter, which represent the combinator, is expected to the the addr
 - If you type `./fold sum ...`, the program uses `_add` as the combinator, which simply adds the value of each element to the accumulator.
 - If you type `./fold sort ...`, the program uses `_insert` as the combinator, which inserts elements into a binary search tree.
 
-Internall, `_insert` calls `_tree_insert` to process each element.
+Internally, `_insert` calls `_tree_insert` to process each element.
 Your task is to implement the latter.
 
 In the same file as the one in which you have implemented `_foldright`, locate the label `_tree_insert` and write an implementation that satisfies the functions's specification.
 
 Your implementation can use `_aalloc` to allocate new tree nodes on the heap.
-Observe that this function expects **two** arguments.
+Observe that this function expects two arguments.
 The first is the number of bytes to allocate and the second is the alignment of this allocation, expressed as the exponent of a power of two.
-For example, the following call requests the allocation of 24 bytes (the size of a tree node) aligned at 16.
+For example, the following call requests the allocation of 24 bytes (the size of a tree node) aligned at 16 (i.e., $2^4$).
 
 ```asm
-_start:
+_somewhere:
   mov  x0, #24
   mov  x1, #4
   bl   _aalloc
