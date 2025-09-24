@@ -121,7 +121,7 @@ Further, registers `x29` and `x30` denote have special significance:
 - `x29` denotes the *frame pointer*, which identifies the start of the current call frame; and
 - `x30` denotes the *link register*, which identifies where control-flow should return after a function call.
 
-> Forgetting to propertly restore the link register may prevent the `ret` instruction from behaving properly!
+> Forgetting to restore the link register may prevent the `ret` instruction from behaving properly!
 
 It is customary at the beginning of a function to store `x29` and `x30` on the stack and restore these registers before the function returns.
 The following excerpt illustrates:
