@@ -169,7 +169,7 @@ Written imperatively, the above sequence is equivalent to the following block:
 ```scala
 var accumulator = 0
 for x <- ArraySeq(1, 2, 3).reverse do
-  accumulator += x
+  accumulator
 accumulator
 ```
 
@@ -201,6 +201,18 @@ Internall, `_insert` calls `_tree_insert` to process each element.
 Your task is to implement the latter.
 
 In the same file as the one in which you have implemented `_foldright`, locate the label `_tree_insert` and write an implementation that satisfies the functions's specification.
+
+Your implementation can use `_aalloc` to allocate new tree nodes on the heap.
+Observe that this function expects **two** arguments.
+The first is the number of bytes to allocate and the second is the alignment of this allocation, expressed as the exponent of a power of two.
+For example, the following call requests the allocation of 24 bytes (the size of a tree node) aligned at 16.
+
+```asm
+_start:
+  mov  x0, #24
+  mov  x1, #4
+  bl   _aalloc
+```
 
 To test your function, you can compile the program and give it a list of numbers.
 A successful implementation will write them in increasing order.
