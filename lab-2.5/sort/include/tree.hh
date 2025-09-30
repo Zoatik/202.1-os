@@ -17,7 +17,7 @@ struct TreeNode {
   void visit(F&& callback) const {
     if (lhs != nullptr) { lhs->visit(callback); }
     callback(value);
-    if (rhs != nullptr) { lhs->visit(callback); }
+    if (rhs != nullptr) { rhs->visit(callback); }
   }
 
 };
