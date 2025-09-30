@@ -11,9 +11,10 @@ std::string Tree::description() const {
   auto first = true;
 
   this->visit([&](auto i) {
-    if (!first) {
-      result << ", ";
+    if (first) {
       first = false;
+    } else {
+      result << ", ";
     }
     result << i;
   });
