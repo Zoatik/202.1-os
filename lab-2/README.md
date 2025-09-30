@@ -26,8 +26,7 @@ The objective of this laboratory is to familiarize yourself with the basics of l
 Specifically, we'll learn how to:
 
 - manipulate the stack pointer;
-- allocate and deallocate heap memory; and
-- use virtual files.
+- allocate and deallocate heap memory.
 
 The estimated duration of this lab is **4 periods**.
 The result of Task 5 must be submitted on [isc.hevs.ch/learn](https://isc.hevs.ch/learn) no later than Sunday 12th October at 23:59 (CEST).
