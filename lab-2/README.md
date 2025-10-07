@@ -168,7 +168,7 @@ Written imperatively, the above sequence is equivalent to the following block:
 ```scala
 var accumulator = 0
 for x <- ArraySeq(1, 2, 3).reverse do
-  accumulator
+  accumulator + x
 accumulator
 ```
 
