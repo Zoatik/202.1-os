@@ -150,9 +150,42 @@ _failure:
 ///
 /// - Complexity: O(n) where n is the number of elements in the buffer.
 _foldright:
-  // TODO
-  ret
+  
+  _setup_foldright:
+    stp x29, x30, [sp, #-48]!     // save frame pointer and return address
+    stp x0, x1, [sp, #16]         // save xs and s
+    str x2, [sp, #32]             // save n and a
 
+  _loop_foldright:
+    cbz x2, _out_foldright        // if n == 0 { return a; }
+
+    // Prepare arguments for f(a, p)
+    sub x2, x2, #1                // n = n - 1
+    mul x1, x1, x2                // x1 = s * (n - 1)
+    add x1, x0, x1                // x1 = xs + s * (n - 1)
+
+    mov x0, x3                    // a = addr of accumulator
+
+    stp x2, x3, [sp, #-32]!       // save n and a
+    str x4, [sp, #16]             // save f
+
+    blr x4                        // call f(a, p) 
+
+    ldp x2, x3, [sp]              // restore n and a
+    ldr x4, [sp, #16]             // restore f
+    add sp, sp, #32
+
+    ldp x0, x1, [sp, #16]         // restore xs and s
+
+    bl _loop_foldright            // foldright(xs, s, n - 1, a, f)
+
+
+  _out_foldright:
+    mov x0, x3                    // return a
+    ldp x29, x30, [sp]            // restore frame pointer and return address
+    add sp, sp, #48               // clean up stack
+    ret
+  
 /// Inserts the value of `x1` in the binary search tree rooted at `x0`.
 ///
 /// If `x0` is null, a new node is allocated and its address is returned in `x0`. Otherwise, the
@@ -164,8 +197,68 @@ _foldright:
 ///
 /// - Complexity: O(log n) where n is the number of elements in the tree.
 _tree_insert:
-  // TODO
-  ret
+  stp x29, x30, [sp, #-48]!
+  stp x0, x1, [sp, #16]
+  mov x29, sp
+  mov x3, #0                      // parent of new node 
+  mov x4, #0                      // left(0) or right(non 0) child of parent
+
+  _loop_tree_insert:
+  
+    cbnz x0, _next_node           // if node != null { go to next node }
+ 
+    // allocate new node
+    stp x3, x4, [sp, #32]         // save x3 and x4
+    mov x0, #24
+    mov x1, #4
+    bl _aalloc                    // allocate new node -> x0 addr of new node
+    ldr x1, [sp, #24]             // restore x1
+    ldp x3, x4, [sp, #32]         // restore x3 and x4
+
+    // initialize new node
+    mov x2, #0
+    str x2, [x0]                  // lhs = null
+    str x2, [x0, #8]              // rhs = null
+    str x1, [x0, #16]             // value = x1
+
+    // Adopt new node
+    cbz x3, _out_tree_insert      // if parent == null { new node is the new root }
+    cbz x4, _adopt_left           // if x1 < value { go left } else { go right }
+
+    str x0, [x3, #8]              // parent.rhs = new_node
+    b _out_tree_insert
+
+  _adopt_left:
+    str x0, [x3]                  // parent.lhs = new_node
+    b _out_tree_insert
+
+  _next_node:
+    mov x3, x0                    // parent = node
+    ldr x2, [x0, #16]             // load value
+    cmp x1, x2                    // if x1 < value { go left } else { go right }
+    blt _go_left
+
+    ldr x0, [x0, #8]              // node = node.rhs
+    mov x4, #1                    // going right flag
+    b _loop_tree_insert
+
+  _go_left:
+    ldr x0, [x0]                  // node = node.lhs
+    mov x4, #0                    // going left flag
+    b _loop_tree_insert
+
+  _out_tree_insert:
+
+    cbz x3, _out_tree_insert.ret  // if parent == null { return new node as new root }  
+    ldr x0, [sp, #16]             // else return original root
+
+    _out_tree_insert.ret:
+      ldp x29, x30, [sp]            // restore frame pointer and return address
+      add sp, sp, #48               // clean up stack
+    
+      ret
+
+
 
 /// Computes the sum of the integers stored at the addresses contained in `x0` and `x1` and writes
 /// the result at the address contained in `x0`.

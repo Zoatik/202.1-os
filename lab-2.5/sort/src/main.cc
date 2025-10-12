@@ -19,5 +19,7 @@ int main() {
 
   for (int i = 0; i < 8; ++i) { std::cout << xs[i] << std::endl; }
 
+  quicksort(&(xs[0]), 8);
+
   return 0;
 }
